@@ -14,6 +14,7 @@ Caverna - Principal
 Caverna é um jogo de aventuras em uma caverna.
 """
 CAVEX = "https://dl.dropboxusercontent.com/u/1751704/labase/caverna/img/cavernax.jpg"
+CAVEZ = "https://dl.dropboxusercontent.com/u/1751704/labase/caverna/img/cavernaz.jpg"
 
 
 class Caverna:
@@ -30,37 +31,52 @@ class Caverna:
 
     def cria_caverna(self):
         """Cria a caverna e suas partes."""
-        self.camara = Camara(self.html).cria_camara()
+        self.camara = Camara(self.html, "Camara0", self).cria_camara()
         # criando um tunel
-        tunel = self.html.DIV()
-        tunel.setAttribute('style', 'height:700; width: 33.33%; float:left;')
-        self.camara.div <=tunel
-        # criando um tunel2
-        tunel2 = self.html.DIV()
-        tunel2.setAttribute('style', 'height:700; width: 33.33%; float:left;')
-        self.camara.div <=tunel2
-         # criando um tunel3
-        tunel3 = self.html.DIV()
-        tunel3.setAttribute('style', 'height:700; width: 33.33%; float:left;')
-        self.camara.div <= tunel3
-        self.main <= self.camara.div
+        tunel_1 = Tunel(self.html, "Tunel0", self.camara).cria_tunel()
+        tunel_2 = Tunel(self.html, "Tunel1", self.camara).cria_tunel()
+        tunel_3 = Tunel(self.html, "Tunel2", self.camara).cria_tunel()
+        #self.main <= self.camara.div
         return self
 
 
 class Camara:
     """Uma camara de caverna com tuneis e habitantes. :ref:'camara'
     """
-    def __init__(self, html):
+    def __init__(self, html, nome, lugar):
         """Inicia a camara. """
-        self.html = html
-        self.div = None
+        self.html, self.nome, self.lugar = html, nome, lugar
+        self.passagem = self.div = None
         self.tunel = ()
 
     def cria_camara(self):
         """Cria a camara e suas partes."""
         self.div = self.html. DIV()
+        self.passagem = self.html.DIV()
         self.div.style.backgroundSize = 'cover'
         self.div.style.backgroundImage = 'url(%s)' % CAVEX
+        self.div.style.width = 1000
+        self.div.style.height = 800
+        self.div.text = "Caverna da Claudia"
+        self.div <= self.passagem
+        self.lugar.main <= self.div
+        return self
+
+
+class Tunel:
+    """Um tunel da caverna que liga camaras. :ref:'tunel'
+    """
+    def __init__(self, html, nome, lugar):
+        """Inicia o tunel. """
+        self.html, self.nome, self.lugar = html, nome,lugar
+        self.passagem = self.div = None
+        self.camara = ()
+
+    def cria_tunel(self):
+        """Cria o tunel e suas partes."""
+        self.div = self.html. DIV()
+        self.div.style.backgroundSize = 'cover'
+        self.div.style.backgroundImage = 'url(%s)' % CAVEZ
         self.div.style.width = 1000
         self.div.style.height = 800
         self.div.text = "Caverna da Claudia"
