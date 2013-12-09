@@ -86,14 +86,26 @@ class Tunel:
 
     def movimenta(self, ev):
         print(ev.target.Id)
-        #self.caverna.movimenta(self)
-        self.caverna.main <= self.div
+        self.caverna.movimenta(self)
+
+    def sai_tunel(self, ev):
+        print(ev.target.Id)
+        self. caverna.movimenta(self.lugar)
+
+    def cria_saida(self):
+        """Cria uma saida deste tunel"""
+        estilo = dict (
+            width="50%", height=300, Float='left')
+        self.entrada_camara = self.html.DIV(
+            Id='entra_'+self.nome, style=estilo
+        )
+        self.entrada_camara.onclick = self.sai_tunel
 
     def cria_tunel(self):
         """Cria o tunel e suas partes."""
         self.div = self.html. DIV(Id=self.nome)
         self.passagem = self.html.DIV(Id='passa_'+self.nome)
-        estilo = dict (
+        estilo = dict(
             width="33.33%", height=300, Float='left')
         self.entrada = self.html.DIV(
             Id='entra_'+self.nome, style=estilo
