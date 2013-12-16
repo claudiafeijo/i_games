@@ -120,7 +120,7 @@ class Tunel:
         self.div.text = "Caverna da Claudia"
         self.div <= self.passagem
         self.cria_saida()
-        return selfs
+        return self
 
 
 def main(gui):
