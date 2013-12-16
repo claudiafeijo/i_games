@@ -40,6 +40,7 @@ class Caverna:
     def cria_caverna(self):
         """Cria a caverna e suas partes."""
         self.camara = Camara(self.html, "Camara0", self).cria_camara()
+        self.sala = self.camara
         # criando uma colecao de tuneis
 
         self.tunel = {
@@ -78,18 +79,17 @@ class Tunel:
     """
     def __init__(self, html, nome, lugar, saida, caverna):
         """Inicia o tunel. """
-        self.html, self.nome = html, nome
+        self.html, self.nome, self.caverna = html, nome, caverna
         self.lugar, self.saida = lugar, saida
-        self.caverna = caverna
-        self.entrada = self.passagem = self.div = None
+        self.entrada_camara = self.entrada = self.passagem = self.div = None
         self.camara = ()
 
     def movimenta(self, ev):
-        print(ev.target.Id)
+        print('movimenta', ev.target.Id, self.div)
         self.caverna.movimenta(self)
 
     def sai_tunel(self, ev):
-        print(ev.target.Id)
+        print(ev.target.Id, self.lugar)
         self.caverna.movimenta(self.lugar)
 
     def cria_saida(self):
